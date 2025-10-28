@@ -1,0 +1,143 @@
+/* ===========================
+   Auth Pages (Login & Register)
+   =========================== */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  background: url('https://source.unsplash.com/1600x900/?spices,herbs') no-repeat center/cover;
+  position: relative;
+}
+.auth-container::after {
+  content: "";
+  position: absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.6);
+}
+.auth-box {
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,0.95);
+  padding: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.25);
+  text-align: center;
+}
+.auth-box h2 {
+  margin-bottom: 1.2rem;
+  color: #222;
+}
+.auth-box .btn {
+  background: #d6af00;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  transition: background 0.25s, transform 0.15s;
+}
+.auth-box .btn:hover {
+  background: #ccac1f;
+  transform: translateY(-2px);
+}
+.link-accent {
+  color: #dbb612;
+  text-decoration: none;
+}
+.link-accent:hover { text-decoration: underline; }
+
+/* ===========================
+   Global Styles (mobile-first)
+   =========================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fafafa;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Navbar */
+.site-nav {
+  background: #111; /* deep charcoal */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.082);
+}
+.navbar-brand { color: #fff; }
+.brand-accent { color:  #ccac1f; }
+.navbar .nav-link { color: rgba(255,255,255,0.85); }
+.navbar .nav-link:hover { color: #ccac1f; }
+
+/* Hero */
+.hero {
+  background: url('https://www.hireninternational.com/wp-content/uploads/2019/06/Hot-Cold-Kitchen-Cooks.jpg') no-repeat center/cover;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 5rem 0;
+}
+.hero::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.5);
+}
+.hero .hero-content { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; }
+.hero h1 { color: #ccac1f; font-size: 2rem; }
+.hero p { color: #fff; margin-bottom: 1.25rem; }
+
+/* CTA button style used site-wide */
+.btn-cta {
+  background: #ccac1f;
+  color: #111 !important;
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+  border: none;
+}
+.btn-cta:hover { background: #ffd000; color: #fff !important; transform: translateY(-2px); }
+
+/* About */
+.bg-white { background: #fff; }
+.about { padding: 3rem 0; }
+.about h2 { color: #222; margin-bottom: 0.5rem; }
+.about p { color: #555; }
+
+/* Recipes section */
+.bg-light { background: #f8f8f8; }
+.recipe-card img { height: 220px; object-fit: cover; }
+.recipe-card .card-body { padding-bottom: 0; }
+
+/* CTA section */
+.cta {
+  background: url('https://source.unsplash.com/1600x900/?kitchen,cooking') no-repeat center/cover;
+  position: relative;
+  padding: 3.5rem 0;
+}
+.cta::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.65);
+}
+.cta .container { position: relative; z-index: 2; }
+.cta h2 { color: #ccac1f; }
+
+/* Footer */
+.site-footer { background: #111; color: #ccc; }
+
+/* Small screens adjustments */
+@media (max-width: 767px) {
+  .hero { min-height: 56vh; padding: 3.5rem 0; }
+  .hero h1 { font-size: 1.6rem; }
+  .hero p { font-size: 0.95rem; }
+  .recipe-card img { height: 160px; }
+}
+
+/* Larger screens */
+@media (min-width: 992px) {
+  .hero h1 { font-size: 3rem; }
+  .auth-box { max-width: 400px; }
+}
