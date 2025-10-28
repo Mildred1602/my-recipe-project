@@ -3,142 +3,467 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Taste Alchemy</title>
+  <title>Taste Alchemy — Master the Art of Flavor</title>
 
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="../css/styte.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --gold: #f8b400;
+      --deep: #0f0f10;
+      --muted: rgba(255,255,255,0.78);
+      --glass-1: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.02);
+      --card-shadow: rgba(0,0,0,0.45);
+    }
+
+    /* ---------- Base ---------- */
+    html,body{ height:100%; margin:0; font-family:'Poppins',sans-serif; -webkit-font-smoothing:antialiased; background: linear-gradient(180deg,#070708 0%, #0b0b0c 60%); color:#efeae6; }
+    a{ text-decoration:none; }
+    img{ max-width:100%; display:block; }
+
+    /* ---------- NAV ---------- */
+    .site-nav{
+      position:sticky; top:0; z-index:1200;
+      background: linear-gradient(90deg, rgba(8,8,9,0.88), rgba(8,8,9,0.6));
+      backdrop-filter: blur(8px);
+      border-bottom:1px solid rgba(255,255,255,0.03);
+    }
+    .navbar-brand{ font-family:'Playfair Display', serif; font-size:1.45rem; color:#fff; }
+    .brand-accent{ color:var(--gold); }
+    .nav-link{ color: rgba(255,255,255,0.85) !important; padding: .6rem .8rem; }
+    .nav-link:hover{ color: var(--gold) !important; }
+    .btn-cta{ background:var(--gold); color:#111 !important; border-radius:28px; padding:.45rem 1.1rem; font-weight:600; box-shadow: 0 8px 20px rgba(248,180,0,0.12); }
+    .btn-cta:hover{ transform: translateY(-3px); }
+
+    /* ---------- HERO ---------- */
+    .hero{
+      min-height:72vh;
+      display:flex; align-items:center; justify-content:center; text-align:center;
+      background-image: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+        url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover; background-position:center; padding:96px 0;
+    }
+    .hero .eyebrow{ color:var(--gold); letter-spacing:.12em; font-weight:700; font-size:.85rem; text-transform:uppercase; }
+    .hero h1{ font-family:'Playfair Display',serif; font-size:clamp(2rem,4.8vw,3.6rem); margin:.6rem 0 0.4rem; color:#fff; line-height:1.02; }
+    .hero p.lead{ color: #efe9e4; max-width:820px; margin:0 auto; font-size:1.05rem; }
+
+    /* ---------- PAGE LAYOUT ---------- */
+    .container-lg{ max-width:1140px; }
+    .page-section{ padding:72px 0; }
+
+    /* ---------- GLASS CARD ---------- */
+    .glass{
+      background: linear-gradient(180deg, var(--glass-1), var(--glass-2));
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius:14px; padding:20px; color:var(--muted);
+    }
+
+    /* ---------- ABOUT ---------- */
+    .about-intro img{ border-radius:12px; box-shadow: 0 18px 40px var(--card-shadow); }
+    .about-intro h2{ font-family:'Playfair Display',serif; color:#fff; font-size:1.7rem; }
+
+    /* ---------- FEATURES ---------- */
+    .features .feature{
+      border-radius:12px; padding:18px; background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border:1px solid rgba(255,255,255,0.03);
+      transition: transform .28s ease, box-shadow .28s ease;
+    }
+    .features .feature:hover{ transform:translateY(-8px); box-shadow: 0 22px 50px rgba(0,0,0,0.6); }
+
+    /* ---------- RECIPES CARDS ---------- */
+    .recipe-card{
+      border-radius:14px; overflow:hidden; background:#fff; color:#111; transition:transform .28s ease, box-shadow .28s ease;
+    }
+    .recipe-card img{ width:100%; height:220px; object-fit:cover; display:block; }
+    .recipe-meta{ padding:16px; }
+    .recipe-card:hover{ transform: translateY(-10px); box-shadow: 0 28px 60px rgba(0,0,0,0.45); }
+
+    /* ---------- CHEFS ---------- */
+    .chefs .card{ border-radius:12px; overflow:hidden; transition: transform .28s ease; border:1px solid rgba(255,255,255,0.03); background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); }
+    .chefs .card:hover{ transform: translateY(-8px); box-shadow: 0 20px 45px rgba(0,0,0,0.5); }
+    .chef-photo{ height:220px; object-fit:cover; }
+
+    /* ---------- TIMELINE ---------- */
+    .timeline{ position:relative; padding-left:24px; }
+    .timeline::before{ content:''; position:absolute; left:8px; top:0; bottom:0; width:4px; background: linear-gradient(180deg,var(--gold), rgba(255,255,255,0.06)); border-radius:4px; }
+    .timeline .item{ margin-bottom:18px; padding-left:28px; position:relative; }
+    .timeline .item::before{ content:''; width:12px;height:12px;border-radius:50%; background:var(--gold); position:absolute; left:-1px; top:6px; box-shadow:0 6px 12px rgba(0,0,0,0.4); }
+
+    /* ---------- TESTIMONIALS ---------- */
+    .testimonial{ border-radius:12px; padding:18px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03); box-shadow: 0 10px 30px rgba(0,0,0,0.45); }
+
+    /* ---------- CTA ---------- */
+    .cta{ background: linear-gradient(90deg, rgba(248,180,0,0.10), rgba(255,255,255,0.02)); border-radius:12px; padding:34px; display:flex; gap:16px; align-items:center; justify-content:space-between; }
+    .cta h3{ margin:0; font-family:'Playfair Display', serif; color:#fff; }
+    .cta p{ margin:0; color:var(--muted); }
+
+    /* ---------- FOOTER ---------- */
+    .site-footer{ padding:28px 0; color:rgba(255,255,255,0.65); text-align:center; border-top:1px solid rgba(255,255,255,0.03); }
+
+    /* ---------- FLOATING COUNTDOWN PANEL ---------- */
+    .count-panel{
+      position: fixed;
+      right: 28px;
+      top: 120px;
+      width: 220px;
+      z-index:1500;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      align-items:center;
+      pointer-events:auto;
+    }
+    .count-panel .glass{ width:100%; padding:16px; display:flex; flex-direction:column; align-items:center; gap:8px; text-align:center; }
+    .timer-wrap{ display:flex; gap:10px; align-items:center; justify-content:center; }
+    .circle{ width:64px; height:64px; position:relative; border-radius:50%; display:inline-grid; place-items:center; color:#0b0b0b; font-weight:700; background: conic-gradient(var(--gold) 0deg, rgba(255,255,255,0.06) 0deg); box-shadow: 0 6px 18px rgba(0,0,0,0.5); transition: transform .25s ease;}
+    .circle .num{ font-weight:700; font-size:1rem; color:#111; }
+    .ring-anim-1{ animation: spinFill 6s linear infinite; }
+    .ring-anim-2{ animation: spinFill 8.5s linear infinite reverse; }
+    .ring-anim-3{ animation: spinFill 11s linear infinite; }
+    @keyframes spinFill{
+      0%{ background: conic-gradient(var(--gold) 0deg, rgba(255,255,255,0.04) 0deg); transform: rotate(0deg); }
+      50%{ background: conic-gradient(var(--gold) 220deg, rgba(255,255,255,0.04) 0deg); transform: rotate(12deg); }
+      100%{ background: conic-gradient(var(--gold) 360deg, rgba(255,255,255,0.04) 0deg); transform: rotate(0deg); }
+    }
+    .count-title{ font-size:.85rem; color:#fff; font-weight:700; }
+    .subtle{ font-size:.78rem; color: rgba(255,255,255,0.65); }
+
+    .panel-controls{ display:flex; gap:8px; align-items:center; justify-content:center; margin-top:6px; }
+    .ctrl{ width:36px;height:36px;border-radius:10px; display:inline-grid; place-items:center; cursor:pointer; background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.02); color:#fff; }
+    .ctrl:hover{ transform: translateY(-3px); }
+
+    /* Hide floating panel on small screens */
+    @media (max-width:980px){ .count-panel{ display:none; } .cta{ flex-direction:column; text-align:center; } .hero{ padding:64px 0; } }
+
+    /* small spacing for mobile */
+    @media (max-width:560px){ .hero p.lead{ font-size:0.95rem; } .container-lg{ padding-left:14px; padding-right:14px; } }
+  </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top site-nav">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="index.html">Taste <span class="brand-accent">Alchemy</span></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-lg site-nav">
+    <div class="container container-lg">
+      <a class="navbar-brand" href="index.html">Taste <span class="brand-accent">Alchemy</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
         <span class="navbar-toggler-icon"></span>
       </button>
-
-      <div class="collapse navbar-collapse" id="mainNav">
-        <ul class="navbar-nav ms-auto align-items-lg-center gap-2">
-          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
           <li class="nav-item"><a class="nav-link" href="recipes.html">Recipes</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-          <li class="nav-item"><a class="btn btn-cta ms-lg-3" href="register.html">Get Started</a></li>
-          <li class="nav-item d-lg-none"><a class="nav-link" href="login.html">Login</a></li>
+          <li class="nav-item ms-3"><a class="btn btn-cta" href="register.html">Get Started</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <header class="hero d-flex align-items-center text-center text-white">
-    <div class="container hero-content">
-      <h1 class="display-5 fw-bold">Master the Art of Flavor</h1>
-      <p class="lead mb-4">Transform everyday ingredients into extraordinary meals — step-by-step lessons, recipes, and chef tips.</p>
-      <div>
-        <a href="register.html" class="btn btn-cta btn-lg me-2">Join Now</a>
-        <a href="#recipes" class="btn btn-outline-light btn-lg">Explore Recipes</a>
+  <!-- HERO -->
+  <header class="hero" role="banner">
+    <div class="container container-lg text-center">
+      <div class="eyebrow" data-aos="fade-down">Taste Alchemy</div>
+      <h1 data-aos="fade-up" data-aos-delay="80">Master the Art of Flavor</h1>
+      <p class="lead mx-auto" data-aos="fade-up" data-aos-delay="160">
+        Transform everyday ingredients into extraordinary meals — follow chef-led lessons, step-by-step recipes, and plating techniques.
+      </p>
+      <div class="mt-4" data-aos="fade-up" data-aos-delay="240">
+        <a href="recipes.html" class="btn btn-outline-light me-2">Explore Recipes</a>
+        <a href="register.html" class="btn btn-cta">Join the Kitchen</a>
       </div>
     </div>
   </header>
 
-  <!-- About -->
-  <section id="about" class="py-5 bg-white">
-    <div class="container">
-      <div class="row align-items-center gy-4">
-        <div class="col-lg-6">
-          <h2 class="mb-3">About Taste Alchemy</h2>
-          <p class="text-muted">We teach the art and science of cooking. Whether you’re a beginner or advancing to professional techniques, we guide you with clear lessons, videos, and recipes built by chefs.</p>
-          <ul class="list-unstyled mt-3">
-            <li class="mb-2">✔ Step-by-step lessons</li>
-            <li class="mb-2">✔ Recipe walkthroughs & plating tips</li>
-            <li class="mb-2">✔ Community & weekly challenges</li>
-          </ul>
+  <main class="page-wrap">
+    <div class="container container-lg">
+
+      <!-- ABOUT / MISSION -->
+      <section class="page-section about-intro" data-aos="fade-right">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-6">
+            <img src="" alt="Chef plating" class="img-fluid rounded">
+          </div>
+          <div class="col-lg-6">
+            <h2>The Art & Science of Cooking</h2>
+            <p class="muted">
+              Taste Alchemy blends classical technique with modern creativity. Our lessons break down complex skills into practical steps so anyone can cook with confidence.
+            </p>
+            <ul class="muted">
+              <li>• Chef-led technique tutorials</li>
+              <li>• Step-by-step recipe walkthroughs</li>
+              <li>• Community challenges & live cook-alongs</li>
+            </ul>
+            <div class="mt-3">
+              <a class="btn btn-cta" href="register.html">Start Learning</a>
+            </div>
+          </div>
         </div>
-        <div class="col-lg-6">
-          <img src="../asset/497e0de8271fcdb949654b0e3a2739bd.jpg" alt="Chef cooking" class="img-fluid rounded shadow-sm">
+      </section>
+
+      <!-- FEATURES -->
+      <section class="page-section" data-aos="fade-up">
+        <h3 class="mb-4">Why Home Cooks Love Taste Alchemy</h3>
+        <div class="row g-3 features">
+          <div class="col-md-6 col-lg-4">
+            <div class="feature">
+              <h5 class="brand-accent">Technique-first</h5>
+              <p class="muted mb-0">Foundational skills that unlock countless dishes — knives, sauces, baking basics and more.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="feature">
+              <h5 class="brand-accent">Chef-Curated</h5>
+              <p class="muted mb-0">Recipes and lessons tested by working chefs; practical, clear and delicious.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="feature">
+              <h5 class="brand-accent">Community</h5>
+              <p class="muted mb-0">Member recipes, feedback cycles, and weekly challenges to keep you improving.</p>
+            </div>
+          </div>
         </div>
+      </section>
+
+      <!-- FEATURED RECIPES -->
+      <section class="page-section" id="recipes" data-aos="fade-up">
+        <h3 class="mb-4 text-center">Featured Recipes</h3>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+            <article class="recipe-card">
+              <img src="https://thedefineddish.com/wp-content/uploads/2023/08/One-Pot-Italian-Shells-and-Cheese-4-1200x1800.jpg" alt="Pasta">
+              <div class="recipe-meta">
+                <h5>Classic One-Pot Pasta</h5>
+                <p class="mb-1 text-muted">Fast, creamy, and perfect for weeknights.</p>
+                <a class="btn btn-sm btn-outline-secondary" href="recipes.html">View Recipe</a>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="120">
+            <article class="recipe-card">
+              <img src="https://images.radio-canada.ca/v1/alimentation/recette/4x3/0002-salade-verte-vinaigrette-echalotes.jpg" alt="Salad">
+              <div class="recipe-meta">
+                <h5>Summer Herb Salad</h5>
+                <p class="mb-1 text-muted">Crisp, bright, and layered textures.</p>
+                <a class="btn btn-sm btn-outline-secondary" href="recipes.html">View Recipe</a>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="240">
+            <article class="recipe-card">
+              <img src="https://sugargeekshow.com/wp-content/uploads/2023/10/easy_chocolate_cake_slice.jpg" alt="Cake">
+              <div class="recipe-meta">
+                <h5>Decadent Chocolate Cake</h5>
+                <p class="mb-1 text-muted">Layers, ganache, and show-stopping presentation.</p>
+                <a class="btn btn-sm btn-outline-secondary" href="recipes.html">View Recipe</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CHEFS -->
+      <section class="page-section" data-aos="fade-up">
+        <h3 class="mb-4">Meet Our Chefs</h3>
+        <div class="row g-3 chefs">
+          <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+            <div class="card">
+              <img class="card-img-top chef-photo" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=80" alt="Chef Isabella">
+              <div class="card-body">
+                <h5 class="card-title mb-1">Chef Isabella</h5>
+                <p class="muted mb-0">Pastry & desserts — plating artist</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="120">
+            <div class="card">
+              <img class="card-img-top chef-photo" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80" alt="Chef Marcus">
+              <div class="card-body">
+                <h5 class="card-title mb-1">Chef Marcus</h5>
+                <p class="muted mb-0">Savory specialist — sauces & technique</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="240">
+            <div class="card">
+              <img class="card-img-top chef-photo" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80" alt="Chef Amina">
+              <div class="card-body">
+                <h5 class="card-title mb-1">Chef Amina</h5>
+                <p class="muted mb-0">Global flavors — spices & fusion</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- JOURNEY / TIMELINE -->
+      <section class="page-section" data-aos="fade-up">
+        <h3 class="mb-4">Our Journey</h3>
+        <div class="glass p-3 timeline">
+          <div class="item" data-aos="fade-right" data-aos-delay="80">
+            <strong class="muted">2018</strong>
+            <p class="mb-0">We started with pop-ups and small workshops — learning with our first students.</p>
+          </div>
+          <div class="item" data-aos="fade-right" data-aos-delay="160">
+            <strong class="muted">2020</strong>
+            <p class="mb-0">Moved online with live cook-alongs and on-demand lessons.</p>
+          </div>
+          <div class="item" data-aos="fade-right" data-aos-delay="240">
+            <strong class="muted">2024</strong>
+            <p class="mb-0">Expanded to masterclasses, community recipes, and guest chef features.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section class="page-section" data-aos="fade-up">
+        <h3 class="mb-4">What Our Students Say</h3>
+        <div class="row g-3">
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="80">
+            <div class="testimonial p-3">
+              <p class="mb-2">"I mastered pan sauces in one session — the lessons are short, clear and practical." — <strong>Emeka</strong></p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="160">
+            <div class="testimonial p-3">
+              <p class="mb-2">"Amazing dessert module — Chef Isabella breaks it down like an artist." — <strong>Lola</strong></p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="240">
+            <div class="testimonial p-3">
+              <p class="mb-2">"The community feedback helped me level up my plating and timing." — <strong>Daniel</strong></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="page-section" data-aos="fade-up">
+        <div class="cta">
+          <div>
+            <h3>Ready to cook like a pro?</h3>
+            <p class="muted">Join the next masterclass and get exclusive recipes & chef feedback.</p>
+          </div>
+          <div>
+            <a href="register.html" class="btn btn-cta">Get Early Access</a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FLOATING COUNTDOWN PANEL -->
+  <aside class="count-panel" aria-hidden="false">
+    <div class="glass" role="region" aria-label="Decorative countdown">
+      <div class="count-title">Next Masterclass</div>
+
+      <div class="timer-wrap" id="timerWrap">
+        <div class="circle ring-anim-1" title="Hours"><div class="num" id="hours">02</div></div>
+        <div class="circle ring-anim-2" title="Minutes"><div class="num" id="minutes">15</div></div>
+        <div class="circle ring-anim-3" title="Seconds"><div class="num" id="seconds">30</div></div>
+      </div>
+
+      <div class="subtle">Decorative looping visual timer</div>
+
+      <div class="panel-controls">
+        <div class="ctrl" id="pauseBtn" title="Pause animation">⏸</div>
+        <div class="ctrl" id="resetBtn" title="Reset timer">⟲</div>
       </div>
     </div>
-  </section>
+  </aside>
 
-  <!-- Features / Recipes -->
-  <section id="recipes" class="py-5 bg-light">
-    <div class="container">
-      <h2 class="text-center mb-4">Featured Recipes</h2>
-      <div class="row g-4">
-        <div class="col-md-6 col-lg-4">
-          <article class="card recipe-card h-100">
-            <img src="https://thedefineddish.com/wp-content/uploads/2023/08/One-Pot-Italian-Shells-and-Cheese-4-1200x1800.jpg" class="card-img-top" alt="Pasta">
-            <div class="card-body">
-              <h3 class="card-title h5">Classic Italian Pasta</h3>
-              <p class="card-text text-muted">Learn fresh pasta, sauce balance and plating.</p>
-            </div>
-            <div class="card-footer bg-white border-0">
-              <a class="btn btn-sm btn-outline-secondary" href="#">View Recipe</a>
-            </div>
-          </article>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <article class="card recipe-card h-100">
-            <img src="https://images.radio-canada.ca/v1/alimentation/recette/4x3/0002-salade-verte-vinaigrette-echalotes.jpg" class="card-img-top" alt="Salad">
-            <div class="card-body">
-              <h3 class="card-title h5">Fresh Summer Salad</h3>
-              <p class="card-text text-muted">Seasonal fruit, herb dressings and textures.</p>
-            </div>
-            <div class="card-footer bg-white border-0">
-              <a class="btn btn-sm btn-outline-secondary" href="#">View Recipe</a>
-            </div>
-          </article>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <article class="card recipe-card h-100">
-            <img src="https://sugargeekshow.com/wp-content/uploads/2023/10/easy_chocolate_cake_slice.jpg" class="card-img-top" alt="Cake">
-            <div class="card-body">
-              <h3 class="card-title h5">Decadent Chocolate Cake</h3>
-              <p class="card-text text-muted">Baking technique, ganache, and decoration.</p>
-            </div>
-            <div class="card-footer bg-white border-0">
-              <a class="btn btn-sm btn-outline-secondary" href="#">View Recipe</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta py-5 text-center text-white">
-    <div class="container">
-      <h2 class="fw-bold">Join Our Community of Food Lovers</h2>
-      <p class="mb-4 text-light">Sign up for recipes, lessons and exclusive tips from chefs.</p>
-      <a href="register.html" class="btn btn-cta btn-lg">Start Learning</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="site-footer text-light py-4">
-    <div class="container">
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container container-lg">
       <div class="row align-items-center">
-        <div class="col-md-6">
-          <h5 class="mb-1">Taste Alchemy</h5>
-          <small class="text-muted">Transforming ingredients into magic.</small>
+        <div class="col-md-6 text-md-start mb-2 mb-md-0">
+          <strong style="color:var(--gold)">Taste Alchemy</strong> — Transforming ingredients into flavor.
         </div>
         <div class="col-md-6 text-md-end">
-          <small class="text-muted">&copy; 2025 Taste Alchemy. All rights reserved.</small>
+          <small>&copy; 2025 Taste Alchemy. All rights reserved.</small>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- Bootstrap JS + Custom JS -->
+  <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+  <script>
+    // Initialize AOS
+    AOS.init({ once: true, duration: 800 });
+
+    // --------- Decorative looping countdown logic ----------
+    // This is a visual timer that decrements from a preset duration and loops.
+    (function(){
+      const startDuration = (2 * 3600) + (15 * 60) + 30; // 2h 15m 30s — change if you want
+      let remaining = startDuration;
+      let running = true;
+      let intervalId = null;
+
+      const hoursEl = document.getElementById('hours');
+      const minutesEl = document.getElementById('minutes');
+      const secondsEl = document.getElementById('seconds');
+      const pauseBtn = document.getElementById('pauseBtn');
+      const resetBtn = document.getElementById('resetBtn');
+
+      function pad(n){ return String(n).padStart(2,'0'); }
+
+      function updateDisplay(sec){
+        const h = Math.floor(sec / 3600);
+        const m = Math.floor((sec % 3600) / 60);
+        const s = sec % 60;
+        hoursEl.textContent = pad(h);
+        minutesEl.textContent = pad(m);
+        secondsEl.textContent = pad(s);
+      }
+
+      function tick(){
+        if(!running) return;
+        remaining -= 1;
+        if(remaining < 0) remaining = startDuration;
+        updateDisplay(remaining);
+      }
+
+      function startInterval(){
+        if(intervalId) clearInterval(intervalId);
+        intervalId = setInterval(tick, 1000);
+      }
+
+      pauseBtn.addEventListener('click', function(){
+        running = !running;
+        pauseBtn.textContent = running ? '⏸' : '▶';
+      });
+
+      resetBtn.addEventListener('click', function(){
+        remaining = startDuration;
+        updateDisplay(remaining);
+      });
+
+      updateDisplay(remaining);
+      startInterval();
+
+      // Small visual pulse on seconds ring every second
+      const secondsRing = document.querySelector('.ring-anim-3');
+      setInterval(() => {
+        secondsRing.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.06)' }, { transform: 'scale(1)' }], { duration: 700, easing: 'ease-out' });
+      }, 1000);
+    })();
+  </script>
+
 </body>
 </html>
- 

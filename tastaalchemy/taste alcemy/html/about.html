@@ -1,112 +1,537 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Taste Alchemy | About</title>
-  <!-- Bootstrap CSS -->
+
+  <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="../css/styte.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --gold: #f8b400;
+      --deep: #1b1b1f;
+      --charcoal: #222428;
+      --cream: #faf5ef;
+      --card: rgba(255,255,255,0.06);
+      --glass: rgba(255,255,255,0.06);
+    }
+
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg,#0f0f10 0%, #141416 60%);
+      color:#e9e9e9;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      scroll-behavior:smooth;
+    }
+
+    /* ---------- NAV ---------- */
+    .site-nav{
+      background: linear-gradient(90deg, rgba(10,10,12,0.72), rgba(10,10,12,0.45));
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      padding: .6rem 0;
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+    .navbar-brand{
+      font-family:"Playfair Display", serif;
+      font-size:1.35rem;
+      color: #fff !important;
+      letter-spacing: .6px;
+    }
+    .brand-accent{ color: var(--gold); }
+    .nav-link{ color: rgba(255,255,255,0.85) !important; }
+    .nav-link:hover{ color: var(--gold) !important; }
+    .btn-cta{
+      background: var(--gold);
+      color: #111;
+      border-radius: 30px;
+      padding:.45rem 1.1rem;
+      font-weight:600;
+      box-shadow:0 6px 20px rgba(248,180,0,0.12);
+    }
+    .btn-cta:hover{ transform: translateY(-3px); }
+
+    /* ---------- HERO ---------- */
+    .hero{
+      min-height: 62vh;
+      display:flex;
+      align-items:center;
+      padding: 80px 0;
+      background-image: linear-gradient(180deg, rgba(15,15,16,0.65), rgba(14,14,14,0.65)),
+        url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=ee1c9b1d6aebe3a18e4aa0ce8a07f6b1');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+    }
+    .hero .eyebrow{
+      color:var(--gold);
+      font-weight:700;
+      font-size:.9rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .hero h1{
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      margin: .4rem 0;
+      line-height:1.05;
+    }
+    .hero p.lead{
+      color: #efece6;
+      max-width: 780px;
+      font-size:1.05rem;
+    }
+
+    /* ---------- LAYOUT ---------- */
+    .page-wrap{ position:relative; padding-bottom:90px; }
+    .container-lg{ max-width:1140px; }
+
+    /* ---------- GLASS CARDS ---------- */
+    .glass{
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius:14px;
+      padding:24px;
+      color:#f4f0ec;
+    }
+
+    /* ---------- ABOUT / MISSION ---------- */
+    .about-intro img{ border-radius:12px; box-shadow: 0 18px 50px rgba(0,0,0,0.55); }
+    .about-intro h2{ font-family:"Playfair Display", serif; font-size:1.8rem; color:#fff; }
+
+    .features .feature{
+      transition: transform .28s ease, box-shadow .28s ease;
+      border-radius:12px;
+      padding:20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .features .feature:hover{ transform: translateY(-8px); box-shadow:0 18px 40px rgba(0,0,0,0.5); }
+
+    /* ---------- TIMELINE ---------- */
+    .timeline{
+      position:relative;
+      padding-left: 20px;
+    }
+    .timeline::before{
+      content:'';
+      position:absolute;
+      left: 10px;
+      top: 8px;
+      bottom: 8px;
+      width:4px;
+      background: linear-gradient(180deg, rgba(248,180,0,0.9), rgba(255,255,255,0.06));
+      border-radius:4px;
+    }
+    .timeline .item{
+      margin-bottom:24px;
+      padding-left:26px;
+      position:relative;
+    }
+    .timeline .item::before{
+      content:'';
+      width:14px;height:14px;border-radius:50%;
+      background: var(--gold);
+      position:absolute;left:-4px;top:6px;
+      box-shadow:0 6px 18px rgba(248,180,0,0.14);
+    }
+
+    /* ---------- CHEFS ---------- */
+    .chefs .card{
+      border-radius:14px;
+      overflow:hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.03);
+      transition: transform .28s ease, box-shadow .28s ease;
+    }
+    .chefs .card:hover{ transform: translateY(-10px); box-shadow: 0 18px 40px rgba(0,0,0,0.6); }
+    .chef-photo{ height:210px; object-fit:cover; }
+
+    /* ---------- CTA ---------- */
+    .cta{
+      margin-top:40px;
+      padding:56px;
+      border-radius:14px;
+      background: linear-gradient(90deg, rgba(248,180,0,0.12), rgba(255,255,255,0.02));
+      display:flex;align-items:center;justify-content:space-between;gap:20px;
+    }
+
+    /* ---------- FLOATING COUNTDOWN PANEL ---------- */
+    .count-panel{
+      position:fixed;
+      right:28px;
+      top:120px;
+      width:220px;
+      z-index:1500;
+      display:flex;
+      flex-direction:column;
+      gap:22px;
+      align-items:center;
+      pointer-events:auto;
+    }
+
+    .count-panel .glass{
+      width:100%;
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:8px;
+      text-align:center;
+    }
+
+    .timer-wrap{ display:flex; gap:10px; align-items:center; justify-content:center; }
+    .circle{
+      width:64px; height:64px; position:relative; border-radius:50%;
+      display:inline-grid;place-items:center;
+      background: conic-gradient(var(--gold) 0deg, rgba(255,255,255,0.06) 0deg);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+      transition: transform .25s ease;
+    }
+    .circle.small{ width:60px; height:60px; }
+    .circle .num{
+      font-weight:700;
+      font-size:1rem;
+      color:#0f0f10;
+      text-shadow:none;
+    }
+
+    /* Animated "rotating fill" effect (infinite loop) */
+    .ring-anim-1{ animation: spinFill 6s linear infinite; }
+    .ring-anim-2{ animation: spinFill 8.5s linear infinite reverse; }
+    .ring-anim-3{ animation: spinFill 11s linear infinite; }
+
+    @keyframes spinFill{
+      0%{ background: conic-gradient(var(--gold) 0deg, rgba(255,255,255,0.04) 0deg); transform: rotate(0deg); }
+      50%{ background: conic-gradient(var(--gold) 220deg, rgba(255,255,255,0.04) 0deg); transform: rotate(12deg); }
+      100%{ background: conic-gradient(var(--gold) 360deg, rgba(255,255,255,0.04) 0deg); transform: rotate(0deg); }
+    }
+
+    .count-title{ font-size: .8rem; color:#f1ece8; font-weight:600; letter-spacing:.02em; }
+    .subtle{ font-size:.75rem; color: rgba(255,255,255,0.6); }
+
+    /* Pin/close small controls */
+    .panel-controls{ display:flex; gap:6px; align-items:center; justify-content:center; margin-top:6px; }
+    .ctrl{ width:36px;height:36px;border-radius:10px; display:inline-grid; place-items:center; cursor:pointer; background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.02);}
+    .ctrl:hover{ transform: translateY(-3px); }
+
+    /* Hide on mobile */
+    @media (max-width: 980px){
+      .count-panel{ display:none; }
+      .cta{ flex-direction:column; text-align:center; }
+    }
+
+    /* small details */
+    .muted{ color: rgba(255,255,255,0.65); font-size:.95rem; }
+  </style>
 </head>
 <body>
-
-  <!-- Navbar -->
+  <!-- NAV -->
   <nav class="navbar navbar-expand-lg site-nav">
-    <div class="container">
-      <a class="navbar-brand fw-bold text-white" href="index.html">Taste<span class="brand-accent">Alchemy</span></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon text-white"></span>
+    <div class="container container-lg">
+      <a class="navbar-brand" href="index.html">Taste <span class="brand-accent">Alchemy</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#">About</a></li>
           <li class="nav-item"><a class="nav-link" href="recipes.html">Recipes</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-          <li class="nav-item"><a class="btn btn-cta ms-lg-3" href="register.html">Get Started</a></li>
-          <li class="nav-item d-lg-none"><a class="nav-link" href="login.html">Login</a></li>
+          <li class="nav-item ms-3"><a class="btn btn-cta" href="register.html">Get Started</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <section class="hero" style="background: url('https://img.freepik.com/free-photo/traditional-salad-with-pieces-medium-rare-grilled-ahi-tuna-sesame-with-fresh-vegetable-salad-rice-plate_2829-18465.jpg?semt=ais_hybrid&w=740&q=80') no-repeat center/cover;">
-    <div class="hero-content text-center">
-      <h1>About <span class="brand-accent">Taste Alchemy</span></h1>
-      <p>Where culinary mastery meets modern learning.</p>
-    </div>
-  </section>
-
-  <!-- About Intro -->
-  <section class="about bg-white py-5">
-    <div class="container">
-      <div class="row align-items-center g-4">
-        <div class="col-md-6">
-          <img src="https://media.istockphoto.com/id/603267744/photo/tapas-food.jpg?s=612x612&w=0&k=20&c=kHdCs_6B9YizzPkuynSpgJnTf8m37xsAQ6czvu0cXBU=" alt="About Taste Alchemy" class="img-fluid rounded shadow">
-        </div>
-        <div class="col-md-6">
-          <h2 class="fw-semibold mb-3">The Art and Science of Cooking</h2>
-          <p class="text-muted">
-            At <strong>Taste Alchemy</strong>, we believe cooking is both an art and a science — a journey of discovery, passion, and creativity.
-            We teach you how to cook, refine flavors, and master culinary techniques from around the world through detailed lessons, recipes, and chef insights.
-          </p>
-          <p class="text-muted">
-            Whether you’re a beginner looking to make your first perfect dish or a seasoned chef experimenting with flavors,
-            Taste Alchemy provides the inspiration and knowledge to transform every meal into a masterpiece.
-          </p>
-          <a href="register.html" class="btn btn-cta mt-3">Join Our Kitchen</a>
-        </div>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container container-lg text-center">
+      <div class="eyebrow" data-aos="fade-down">Taste Alchemy</div>
+      <h1 data-aos="fade-up" data-aos-delay="80">About <span class="brand-accent">Taste Alchemy</span></h1>
+      <p class="lead mx-auto" data-aos="fade-up" data-aos-delay="160">
+        We transform everyday ingredients into signature experiences — culinary techniques, plating, and flavor science taught by chefs.
+        Dive into our world: journey, chefs, community and an upcoming masterclass series.
+      </p>
+      <div class="mt-4" data-aos="fade-up" data-aos-delay="240">
+        <a href="recipes.html" class="btn btn-outline-light me-2">Explore Recipes</a>
+        <a href="register.html" class="btn btn-cta">Join the Kitchen</a>
       </div>
     </div>
-  </section>
+  </header>
 
-  <!-- Mission Section -->
-  <section class="py-5 bg-light text-center">
-    <div class="container">
-      <h2 class="fw-semibold mb-4">Our Mission</h2>
-      <p class="lead text-muted mb-4">Empowering home cooks and professionals to create with confidence, passion, and purpose.</p>
+  <main class="page-wrap">
+    <div class="container container-lg py-5">
       <div class="row g-4">
-        <div class="col-md-4">
-          <div class="p-4 bg-white shadow-sm rounded h-100">
-            <h5 class="text-uppercase brand-accent fw-bold mb-2">Inspire</h5>
-            <p>We inspire creativity in every kitchen by combining timeless techniques with modern trends.</p>
-          </div>
+        <div class="col-lg-8">
+          <!-- ABOUT / MISSION -->
+          <section class="about-intro glass mb-4" data-aos="fade-right">
+            <div class="row g-3 align-items-center">
+              <div class="col-md-6">
+                <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=900&auto=format&fit=crop&ixlib=rb-4.0.3&s=ef4f3f2f0f6c9b6d5b46f3c0a4fb3f5b" alt="Chef plating" class="img-fluid">
+              </div>
+              <div class="col-md-6">
+                <h2>The Art & Science of Cooking</h2>
+                <p class="muted">
+                  Taste Alchemy blends classical technique with modern creativity. Our lessons break down complex skills into practical steps so anyone can cook with confidence.
+                </p>
+                <ul class="muted">
+                  <li>Step-by-step chef lessons</li>
+                  <li>Technique-driven recipes</li>
+                  <li>Community events & weekly challenges</li>
+                </ul>
+                <a class="btn btn-cta mt-2" href="register.html">Start Learning</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- OUR JOURNEY (timeline) -->
+          <section class="mb-4" data-aos="fade-up">
+            <h3 class="mb-3">Our Journey</h3>
+            <div class="glass timeline p-3">
+              <div class="item" data-aos="fade-right" data-aos-delay="80">
+                <strong class="muted">2018</strong>
+                <p class="mb-0">Humble beginnings — a tiny kitchen studio and big dreams. We started with weekend pop-ups and recipe videos.</p>
+              </div>
+              <div class="item" data-aos="fade-right" data-aos-delay="160">
+                <strong class="muted">2020</strong>
+                <p class="mb-0">Pivoted to online classes: hands-on tutorials, technique playlists, and community cook-alongs.</p>
+              </div>
+              <div class="item" data-aos="fade-right" data-aos-delay="240">
+                <strong class="muted">2023</strong>
+                <p class="mb-0">Masterclass series launched — themed months and guest chefs from around the world.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- FEATURES -->
+          <section class="mb-4" data-aos="fade-up">
+            <h3 class="mb-3">Why Home Cooks Love Us</h3>
+            <div class="row g-3 features">
+              <div class="col-md-6 col-lg-4">
+                <div class="feature p-3">
+                  <h5 class="brand-accent">Technique-first</h5>
+                  <p class="muted mb-0">We focus on foundational skills that unlock countless recipes.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4">
+                <div class="feature p-3">
+                  <h5 class="brand-accent">Chef-curated</h5>
+                  <p class="muted mb-0">Every recipe is tested and refined by working chefs.</p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4">
+                <div class="feature p-3">
+                  <h5 class="brand-accent">Community</h5>
+                  <p class="muted mb-0">Live cook-alongs, challenges, and feedback cycles keep you growing.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- CHEFS -->
+          <section class="mb-4" data-aos="fade-up">
+            <h3 class="mb-3">Meet Our Chefs</h3>
+            <div class="row g-3 chefs">
+              <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+                <div class="card">
+                  <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=900&auto=format&fit=crop&ixlib=rb-4.0.3&s=0b3c6a6b9b3b3b4f5b6b7c8d9a8e7f6c" class="card-img-top chef-photo" alt="Chef 1">
+                  <div class="card-body">
+                    <h5 class="card-title mb-1">Chef Isabella</h5>
+                    <p class="muted mb-0">Pastry & dessert specialist — plating artist.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="120">
+                <div class="card">
+                  <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=900&auto=format&fit=crop&ixlib=rb-4.0.3&s=a3a7f7d6c2b3d4f5e6a7b8c9d0e1f2a3" class="card-img-top chef-photo" alt="Chef 2">
+                  <div class="card-body">
+                    <h5 class="card-title mb-1">Chef Marcus</h5>
+                    <p class="muted mb-0">Savory lead — sauces and flavor balancing.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="240">
+                <div class="card">
+                  <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=900&auto=format&fit=crop&ixlib=rb-4.0.3&s=ee1c9b1d6aebe3a18e4aa0ce8a07f6b1" class="card-img-top chef-photo" alt="Chef 3">
+                  <div class="card-body">
+                    <h5 class="card-title mb-1">Chef Amina</h5>
+                    <p class="muted mb-0">Global flavors — spices and fusion.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- COMMUNITY HIGHLIGHTS -->
+          <section class="mb-4" data-aos="fade-up">
+            <h3 class="mb-3">Community Highlights</h3>
+            <div class="glass p-3">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <p class="muted mb-0"><strong class="brand-accent">Weekly Challenges</strong> — join themed weeks and win featured slots in our Masterclass demo.</p>
+                </div>
+                <div class="col-md-6">
+                  <p class="muted mb-0"><strong class="brand-accent">Member Recipes</strong> — community-submitted recipes with chef feedback and badges.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- CTA -->
+          <section data-aos="fade-up">
+            <div class="cta">
+              <div>
+                <h4 class="mb-1">Ready to cook like a pro?</h4>
+                <p class="muted mb-0">Sign up for early access to our next masterclass and grab exclusive recipes.</p>
+              </div>
+              <div class="text-end">
+                <a href="register.html" class="btn btn-cta">Get Early Access</a>
+              </div>
+            </div>
+          </section>
         </div>
-        <div class="col-md-4">
-          <div class="p-4 bg-white shadow-sm rounded h-100">
-            <h5 class="text-uppercase brand-accent fw-bold mb-2">Educate</h5>
-            <p>Through practical tutorials, we make learning to cook engaging, accessible, and fun for everyone.</p>
+
+        <!-- RIGHT COLUMN (spacer on desktop; on small screens floats below content) -->
+        <div class="col-lg-4">
+          <!-- extra content or testimonials can go here -->
+          <div class="glass p-3 mb-3" data-aos="fade-left">
+            <h5 class="mb-2">Upcoming</h5>
+            <p class="muted mb-0">Masterclass: "Sauces & Reductions" — curated recipes and live Q&A with Chef Marcus.</p>
+            <div class="mt-3 subtle">Next session: <strong>September 14, 2025</strong></div>
           </div>
-        </div>
-        <div class="col-md-4">
-          <div class="p-4 bg-white shadow-sm rounded h-100">
-            <h5 class="text-uppercase brand-accent fw-bold mb-2">Connect</h5>
-            <p>We bring together a global community of food lovers, chefs, and learners who share the love for taste.</p>
+
+          <div class="glass p-3" data-aos="fade-left" data-aos-delay="120">
+            <h5 class="mb-2">Member Testimonial</h5>
+            <p class="muted">"Clear, fun, and practical — Taste Alchemy transformed my weeknight dinners." — <em>Ada</em></p>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </main>
 
-  <!-- CTA Section -->
-  <section class="cta text-center">
-    <div class="container">
-      <h2 class="fw-semibold mb-3">Discover Your Inner Chef</h2>
-      <p>Start your journey with Taste Alchemy today and experience cooking like never before.</p>
-      <a href="register.html" class="btn btn-cta">Get Started</a>
+  <!-- FLOATING COUNTDOWN PANEL (always visible on desktop) -->
+  <aside class="count-panel" aria-hidden="false">
+    <div class="glass" role="region" aria-label="Countdown visual timer">
+      <div class="count-title">Next Masterclass</div>
+
+      <!-- animated rings and numbers -->
+      <div class="timer-wrap" id="timerWrap">
+        <div class="circle ring-anim-1" title="Hours">
+          <div class="num" id="hours">02</div>
+        </div>
+        <div class="circle ring-anim-2" title="Minutes">
+          <div class="num" id="minutes">15</div>
+        </div>
+        <div class="circle ring-anim-3" title="Seconds">
+          <div class="num" id="seconds">30</div>
+        </div>
+      </div>
+
+      <div class="subtle">Repeating visual countdown</div>
+
+      <div class="panel-controls">
+        <div class="ctrl" id="pauseBtn" title="Pause animation">⏸</div>
+        <div class="ctrl" id="resetBtn" title="Reset timer">⟲</div>
+      </div>
     </div>
-  </section>
+  </aside>
 
-  <!-- Footer -->
-  <footer class="site-footer text-center py-3">
-    <p class="mb-0">&copy; 2025 TasteAlchemy. All Rights Reserved.</p>
+  <!-- FOOTER -->
+  <footer class="site-footer text-center py-4">
+    <div class="container">
+      <small class="muted">&copy; 2025 Taste Alchemy. All rights reserved.</small>
+    </div>
   </footer>
 
-  <!-- Bootstrap JS -->
+  <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+  <script>
+    // Initialize AOS
+    AOS.init({ once: true, duration: 800 });
+
+    // -------------------------
+    // Static looping visual countdown
+    // - This is a decorative countdown that decrements from a preset duration and resets when it reaches 0.
+    // - You can change the 'startDuration' to any value (seconds).
+    // -------------------------
+
+    (function(){
+      // Start duration in seconds (example: 2h 15m 30s => 8130s)
+      const startDuration = (2 * 3600) + (15 * 60) + 30; // change as desired
+      let remaining = startDuration;
+      let running = true;
+      let intervalId = null;
+
+      const hoursEl = document.getElementById('hours');
+      const minutesEl = document.getElementById('minutes');
+      const secondsEl = document.getElementById('seconds');
+      const pauseBtn = document.getElementById('pauseBtn');
+      const resetBtn = document.getElementById('resetBtn');
+
+      function pad(n){ return String(n).padStart(2,'0'); }
+
+      function updateDisplay(sec){
+        const h = Math.floor(sec / 3600);
+        const m = Math.floor((sec % 3600) / 60);
+        const s = sec % 60;
+        hoursEl.textContent = pad(h);
+        minutesEl.textContent = pad(m);
+        secondsEl.textContent = pad(s);
+      }
+
+      function tick(){
+        if(!running) return;
+        remaining = remaining - 1;
+        if(remaining < 0){
+          // reset to start for looping visual effect
+          remaining = startDuration;
+        }
+        updateDisplay(remaining);
+      }
+
+      function startInterval(){
+        if(intervalId) clearInterval(intervalId);
+        intervalId = setInterval(tick, 1000);
+      }
+
+      pauseBtn.addEventListener('click', function(){
+        running = !running;
+        pauseBtn.textContent = running ? '⏸' : '▶';
+      });
+
+      resetBtn.addEventListener('click', function(){
+        remaining = startDuration;
+        updateDisplay(remaining);
+      });
+
+      // initial display and start
+      updateDisplay(remaining);
+      startInterval();
+
+      // Small polish: animate rings speed on seconds change (subtle)
+      const secondsRing = document.querySelector('.ring-anim-3');
+      setInterval(() => {
+        // add a small 0.6s scale pulse whenever the seconds resets to 59->58 etc.
+        secondsRing.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.06)' }, { transform: 'scale(1)' }], { duration: 700, easing: 'ease-out' });
+      }, 1000);
+    })();
+  </script>
 </body>
 </html>
