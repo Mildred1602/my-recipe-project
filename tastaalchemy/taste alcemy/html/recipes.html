@@ -3,10 +3,169 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Global Recipes | Taste Alchemy</title>
+  <title>Taste Alchemy | Global Recipes</title>
+
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="../css/styte.css">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fafafa;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    .site-nav {
+      background: linear-gradient(90deg, #e85d04, #ffba08);
+    }
+
+    .navbar-brand {
+      color: #fff !important;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .brand-accent {
+      color: #ffd60a;
+    }
+
+    .nav-link {
+      color: #fff !important;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .nav-link:hover {
+      color: #ffd60a !important;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+    }
+
+    .hero h1, .hero p {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Search Bar */
+    .input-group {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .form-control {
+      border-radius: 50px 0 0 50px;
+      padding: 0.9rem 1.5rem;
+      font-size: 1rem;
+    }
+
+    .btn-cta {
+      background: #e85d04;
+      color: #fff;
+      border-radius: 0 50px 50px 0;
+      padding: 0.9rem 2rem;
+      border: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-cta:hover {
+      background: #ffba08;
+      transform: scale(1.05);
+    }
+
+    /* Recipe Cards */
+    .recipe-card {
+      transition: all 0.4s ease;
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .recipe-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+    }
+
+    .recipe-card img {
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .recipe-card .card-body {
+      background: white;
+      padding: 1.2rem;
+    }
+
+    /* Floating Countdown Timer */
+    .floating-timer {
+      position: fixed;
+      right: 25px;
+      bottom: 25px;
+      background: conic-gradient(#e85d04 0deg, #ffba08 360deg);
+      color: white;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.2rem;
+      animation: rotate 5s linear infinite;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Footer */
+    .site-footer {
+      background: #1b1b1b;
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+
+    .site-footer a {
+      color: #ffd60a;
+      text-decoration: none;
+    }
+
+    .site-footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
+
 <body>
 
   <!-- Navbar -->
@@ -21,40 +180,83 @@
           <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
           <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
           <li class="nav-item"><a href="recipe.html" class="nav-link active">Recipes</a></li>
-          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>       
-          
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <section class="hero text-center d-flex align-items-center justify-content-center" style="min-height:50vh;background:url('https://media.istockphoto.com/id/836453252/photo/diverse-food-on-the-table.jpg?s=612x612&w=0&k=20&c=iZrKywDlF-3wvkIHrBfAsgoYeXk4sc6nOdDyxNHuTsk=') no-repeat center/cover;">
-    <div class="container position-relative text-white">
+  <section class="hero" style="background:url('https://media.istockphoto.com/id/836453252/photo/diverse-food-on-the-table.jpg?s=612x612&w=0&k=20&c=iZrKywDlF-3wvkIHrBfAsgoYeXk4sc6nOdDyxNHuTsk=') no-repeat center/cover;">
+    <div data-aos="fade-up">
       <h1 class="display-5 fw-bold">Explore Recipes from Around the World</h1>
-      <p class="lead">Search any meal and learn how to make it with Taste Alchemy</p>
+      <p class="lead">Search, learn, and master the art of global cooking.</p>
     </div>
   </section>
 
   <!-- Search Section -->
   <section class="py-5 bg-light">
-    <div class="container">
-      <div class="input-group mb-4">
+    <div class="container text-center" data-aos="fade-up">
+      <div class="input-group mb-5 shadow-sm">
         <input type="text" id="searchInput" class="form-control form-control-lg" placeholder="Search for recipes e.g. chicken, pasta, rice...">
         <button class="btn btn-cta" onclick="searchRecipes()">Search</button>
       </div>
-      <div class="row" id="recipeContainer"></div>
+      <div class="row g-4" id="recipeContainer">
+        <!-- Sample Cards -->
+        <div class="col-md-4" data-aos="zoom-in">
+          <div class="card recipe-card">
+            <img src="https://img.freepik.com/free-photo/top-view-delicious-pasta-plate_23-2148335634.jpg" class="card-img-top" alt="Pasta">
+            <div class="card-body">
+              <h5 class="card-title fw-semibold">Creamy Italian Pasta</h5>
+              <p class="card-text text-muted">A rich blend of parmesan and herbs for your perfect dinner.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="150">
+          <div class="card recipe-card">
+            <img src="https://img.freepik.com/free-photo/front-view-delicious-chicken-meal_23-2148769976.jpg" class="card-img-top" alt="Chicken">
+            <div class="card-body">
+              <h5 class="card-title fw-semibold">Grilled Chicken Deluxe</h5>
+              <p class="card-text text-muted">Juicy chicken with smoky flavor, paired with tangy sauce.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+          <div class="card recipe-card">
+            <img src="https://img.freepik.com/free-photo/top-view-baked-salmon-with-lemon_23-2148335621.jpg" class="card-img-top" alt="Salmon">
+            <div class="card-body">
+              <h5 class="card-title fw-semibold">Baked Lemon Salmon</h5>
+              <p class="card-text text-muted">Light, healthy, and bursting with fresh citrus flavor.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
+  <!-- Floating Timer -->
+  <div class="floating-timer" id="timer">30s</div>
+
   <!-- Footer -->
-  <footer class="site-footer text-center py-3">
-    <div class="container">
-      <p class="mb-0">&copy; 2025 Taste Alchemy. All Rights Reserved.</p>
-    </div>
+  <footer class="site-footer text-center py-4">
+    <p class="mb-0">&copy; 2025 <span class="brand-accent">TasteAlchemy</span>. All Rights Reserved.</p>
   </footer>
 
+  <!-- Bootstrap JS & AOS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../js/recipes.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+
+    // Simple countdown loop for floating timer
+    let timer = document.getElementById('timer');
+    let count = 30;
+    setInterval(() => {
+      count--;
+      if (count <= 0) count = 30;
+      timer.textContent = count + 's';
+    }, 1000);
+  </script>
+
 </body>
 </html>
