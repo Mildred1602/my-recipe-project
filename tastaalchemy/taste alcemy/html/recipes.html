@@ -4,57 +4,216 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Global Recipes | Taste Alchemy</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../css/styte.css">
-</head>
-<body>
 
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- AOS Animation -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../css/styte.css">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    .site-nav {
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      transition: all 0.3s ease;
+    }
+
+    .brand-accent {
+      color: #f8b400;
+    }
+
+    .btn-cta {
+      background: #f8b400;
+      color: #fff;
+      border-radius: 30px;
+      transition: 0.3s;
+      padding: 0.6rem 1.5rem;
+    }
+
+    .btn-cta:hover {
+      background: #d49700;
+      transform: translateY(-2px);
+    }
+
+    /* === Hero === */
+    .hero {
+      position: relative;
+      height: 60vh;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                  url('https://media.istockphoto.com/id/836453252/photo/diverse-food-on-the-table.jpg?s=612x612&w=0&k=20&c=iZrKywDlF-3wvkIHrBfAsgoYeXk4sc6nOdDyxNHuTsk=') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero h1 {
+      color: #f8b400;
+      animation: fadeDown 1.5s ease;
+    }
+
+    .hero p {
+      color: #f0f0f0;
+      animation: fadeUp 1.5s ease;
+    }
+
+    @keyframes fadeDown {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeUp {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* === Recipe Cards === */
+    .recipe-card {
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      background: #fff;
+    }
+
+    .recipe-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .recipe-card img {
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .recipe-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .recipe-card .card-body {
+      padding: 1.5rem;
+    }
+
+    .recipe-card h5 {
+      color: #333;
+      font-weight: 600;
+    }
+
+    /* === Footer === */
+    .site-footer {
+      background: #222;
+      color: #ccc;
+    }
+
+    .site-footer h5 {
+      color: #f8b400;
+    }
+  </style>
+</head>
+
+<body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark site-nav sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top site-nav">
     <div class="container">
-      <a class="navbar-brand fw-bold" href="index.html">Taste<span class="brand-accent">Alchemy</span></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <a class="navbar-brand fw-bold" href="index.html">Taste <span class="brand-accent">Alchemy</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto">
+
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-2">
           <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
           <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
           <li class="nav-item"><a href="recipe.html" class="nav-link active">Recipes</a></li>
-          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>       
-          
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+          <li class="nav-item"><a class="btn btn-cta ms-lg-3" href="register.html">Get Started</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <section class="hero text-center d-flex align-items-center justify-content-center" style="min-height:50vh;background:url('https://media.istockphoto.com/id/836453252/photo/diverse-food-on-the-table.jpg?s=612x612&w=0&k=20&c=iZrKywDlF-3wvkIHrBfAsgoYeXk4sc6nOdDyxNHuTsk=') no-repeat center/cover;">
-    <div class="container position-relative text-white">
-      <h1 class="display-5 fw-bold">Explore Recipes from Around the World</h1>
-      <p class="lead">Search any meal and learn how to make it with Taste Alchemy</p>
+  <section class="hero text-center text-white">
+    <div class="container" data-aos="fade-up">
+      <h1 class="display-4 fw-bold mb-3">Explore Global Recipes</h1>
+      <p class="lead mb-4">Discover dishes from every culture — cook, learn, and share your passion for flavor.</p>
     </div>
   </section>
 
-  <!-- Search Section -->
+  <!-- Search -->
   <section class="py-5 bg-light">
     <div class="container">
-      <div class="input-group mb-4">
-        <input type="text" id="searchInput" class="form-control form-control-lg" placeholder="Search for recipes e.g. chicken, pasta, rice...">
+      <div class="text-center mb-4" data-aos="fade-up">
+        <h2 class="fw-bold mb-3">Find Your Next Favorite Dish</h2>
+        <p class="text-muted">Search by ingredient, cuisine, or style — Taste Alchemy brings the world’s recipes to your kitchen.</p>
+      </div>
+
+      <div class="input-group mb-5" data-aos="zoom-in">
+        <input type="text" id="searchInput" class="form-control form-control-lg" placeholder="e.g. chicken, pasta, salad...">
         <button class="btn btn-cta" onclick="searchRecipes()">Search</button>
       </div>
-      <div class="row" id="recipeContainer"></div>
+
+      <div class="row g-4" id="recipeContainer">
+        <!-- Example Cards -->
+        <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+          <article class="card recipe-card h-100">
+            <img src="https://thedefineddish.com/wp-content/uploads/2023/08/One-Pot-Italian-Shells-and-Cheese-4-1200x1800.jpg" alt="Pasta">
+            <div class="card-body">
+              <h5>Italian Shells & Cheese</h5>
+              <p class="text-muted mb-3">A one-pot creamy pasta experience with rich herbs.</p>
+              <a href="#" class="btn btn-outline-warning btn-sm">View Recipe</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="150">
+          <article class="card recipe-card h-100">
+            <img src="https://images.radio-canada.ca/v1/alimentation/recette/4x3/0002-salade-verte-vinaigrette-echalotes.jpg" alt="Salad">
+            <div class="card-body">
+              <h5>Summer Garden Salad</h5>
+              <p class="text-muted mb-3">Crisp greens with a tangy vinaigrette and toasted nuts.</p>
+              <a href="#" class="btn btn-outline-warning btn-sm">View Recipe</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="300">
+          <article class="card recipe-card h-100">
+            <img src="https://sugargeekshow.com/wp-content/uploads/2023/10/easy_chocolate_cake_slice.jpg" alt="Cake">
+            <div class="card-body">
+              <h5>Chocolate Fudge Cake</h5>
+              <p class="text-muted mb-3">Rich, moist, and decadent — a true chocolate lover’s dream.</p>
+              <a href="#" class="btn btn-outline-warning btn-sm">View Recipe</a>
+            </div>
+          </article>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="site-footer text-center py-3">
-    <div class="container">
-      <p class="mb-0">&copy; 2025 Taste Alchemy. All Rights Reserved.</p>
+  <footer class="site-footer text-light py-4">
+    <div class="container text-center">
+      <h5 class="mb-1">Taste Alchemy</h5>
+      <p class="text-muted mb-0">Transforming ingredients into experiences. &copy; 2025 All Rights Reserved.</p>
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ once: true });
+  </script>
   <script src="../js/recipes.js"></script>
 </body>
 </html>
